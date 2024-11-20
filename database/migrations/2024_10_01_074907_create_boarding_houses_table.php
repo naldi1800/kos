@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('type', ['Khusus Putra', 'Khusus Putri', 'Bebas']);
             $table->time('curfew')->nullable();
             $table->text('rules')->nullable();
+            $table->text('address');
             $table->decimal('latitude', 9, 6)->nullable();
             $table->decimal('longitude', 9, 6)->nullable();
             $table->text('description')->nullable();

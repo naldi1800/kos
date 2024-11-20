@@ -20,21 +20,65 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
+    <style>
+        :root {
+            /* --bg-palettes-color: #DFF2EB;
+            --fg-palettes-color: #B9E5E8;
+            --action-palettes-color: #7AB2D3;
+            --object-palettes-color: #4A628A; */
 
+            /* --bg-palettes-color: #003285;
+            --fg-palettes-color: #2A629A;
+            --action-palettes-color: #FF7F3E;
+            --object-palettes-color: #FFDA78; */
+
+            --bg-palettes-color: #27374D;
+            --fg-palettes-color: #526D82;
+            --action-palettes-color: #9DB2BF;
+            --object-palettes-color: #DDE6ED;
+        }
+
+        .bg_palettes {
+            background-color: var(--bg-palettes-color);
+        }
+
+        .fg_palettes {
+            background-color: var(--fg-palettes-color);
+        }
+
+        .action_palettes {
+            background-color: var(--action-palettes-color);
+        }
+
+        .h_palettes{
+            color: var(--object-palettes-color);
+        }
+
+        .bgs_palettes{
+            background-color:  var(--fg-palettes-color);
+            color:  var(--bg-palettes-color);
+        }
+        .bgs_palettes:hover{
+            background-color:  var(--action-palettes-color);
+            color:  #FFFF;
+        }
+
+        .object_palettes {
+            background-color: var(--object-palettes-color);
+        }
+    </style>
     <title>Admin Kos Kosan Tamalanrea</title>
 </head>
 
-<body>
+<body class="bg_palettes">
 
     <x-nav.main />
-
-
 
     {{-- <x-alert /> --}}
 
     <main class="container">
         @isset($header)
-            <header class="h1">
+            <header class="h1 h_palettes">
                 {{ $header }}
             </header>
         @endisset

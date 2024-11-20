@@ -20,9 +20,11 @@ class BoardingHouseResource extends JsonResource
             'gender_restriction' => $this->type,
             'curfew' => $this->curfew,
             'rules' => $this->rules,
+            'address' => $this->address,
             'location' => [$this->latitude, $this->longitude], // Geopoint location
             'rooms' => RoomResource::collection($this->whenLoaded('rooms')), // Load all rooms
             'facilities' => FacilityHouseResource::collection($this->whenLoaded('facilities')), // Load all facilities
+            'description' => $this->description,
         ];
     }
 }

@@ -28,8 +28,10 @@ class HouseSeeder extends Seeder
                 'type' => $faker->randomElement(['Khusus Putra', 'Khusus Putri', 'Bebas']),
                 'curfew' => $faker->time('H:i'),
                 'rules' => $faker->sentence(10),
+                'address' => $faker->address(),
                 'latitude' => $faker->latitude,
                 'longitude' => $faker->longitude,
+                'description' => $faker->sentence(),
             ]);
 
             // Buat 3 kamar untuk setiap BoardingHouse
@@ -40,26 +42,26 @@ class HouseSeeder extends Seeder
                     'size' => $faker->numberBetween(2, 5) . "x" . $faker->numberBetween(2, 5),
                     'price' => $faker->numberBetween(1000000, 3000000), // Harga dalam IDR
                     'availability' => $faker->randomElement([true, false]),
-                    'description' => $faker->randomElement(["Kasur: Tersedia", "Kasur: Tidak Tersedia"]) . "<br>" .  $faker->randomElement(["Lemari: Tersedia", "Lemari: Tidak Tersedia"]),
+                    'description' => $faker->sentence(),
                 ]);
-                for($k = 0; $k < 2; $k++){
+                for ($k = 0; $k < 2; $k++) {
                     FacilityRoom::create([
                         'room_id' => $room->id,
-                        'facility_id' => $faker->numberBetween(1,5),
+                        'facility_id' => $faker->numberBetween(1, 4),
                     ]);
                 }
             }
 
             // Buat 2 fasilitas untuk setiap BoardingHouse
-            $randomID = $faker->numberBetween(1, 5);
-            for ($k = 0; $k < $faker->numberBetween(1, 3); $k++) {
+            $randomID = $faker->numberBetween(5, 7);
+            for ($k = 0; $k < $faker->numberBetween(1, 2); $k++) {
                 FacilityHouse::create([
                     'house_id' => $boardingHouse->id,
                     'facility_id' => $randomID,
                     'description' => $faker->sentence(5),
                 ]);
                 $randomID++;
-                if ($randomID > 5) $randomID = 1;
+                if ($randomID > 7) $randomID = 5;
             }
         }
     }

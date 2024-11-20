@@ -28,6 +28,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/house', [HouseController::class, 'index'])->name('house');
     Route::get('/rooms/{id}', [RoomController::class, 'index'])->name('house.rooms');
     Route::prefix('house')->group(function () {
+        Route::get('/detail/{id}', [HouseController::class, 'detail'])->name('house.detail');
         Route::prefix('room')->group(function () {
             Route::get('/create/{house_id}', [RoomController::class, 'create'])->name('room.create');
             Route::get('/update/{house_id}/{id}', [RoomController::class, 'update'])->name('room.update');

@@ -8,15 +8,22 @@ use Illuminate\Http\Request;
 
 class HouseController extends Controller
 {
-    public function getAllAPI() {
+    public function getAllAPI()
+    {
         $boardingHouse = House::with(['rooms.facilities.facility', 'facilities.facility'])->get();
         return BoardingHouseResource::collection($boardingHouse);
     }
 
-    public function index() {
+    public function index()
+    {
         $datas = House::with(['rooms.facilities', 'facilities.facility'])->get();
-        // dd($datas);
         return view('admin.house.index', compact(['datas']));
+    }
+
+    public function detail($id)
+    {
+        $datas = House::with(['rooms.facilities', 'facilities.facility'])->where('id', $id)->get();
+        return view('admin.house.detail', compact(['datas']));
     }
 
     public function map($id)
@@ -24,5 +31,4 @@ class HouseController extends Controller
         $data = House::find($id);
         return view('admin.house.map', compact('data'));
     }
-
 }
