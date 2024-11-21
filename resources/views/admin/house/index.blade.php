@@ -4,39 +4,21 @@
             {{ __('Kos kosan') }}
         </h2>
     </x-slot>
-    <div class="row">
+    <div class="row col-12">
         <div class="col-4 mb-3">
         </div>
 
         <div class="row col-12">
             @foreach ($datas as $d)
                 @php
-                    $image_404 = 'images/404.png';
-                    $filename = "$d->id";
 
-                    // Daftar kemungkinan ekstensi
-                    $extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
-                    $fileFound = null;
-
-                    foreach ($extensions as $ext) {
-                        $filePath = "images/house/{$filename}.{$ext}"; // Path relatif dari disk
-                        if (Storage::disk('public')->exists($filePath)) {
-                            $fileFound = $filePath;
-                            break; // Berhenti jika file ditemukan
-                        }
-                    }
-
-                    if ($fileFound) {
-                        $image = $fileFound; // Gunakan file yang ditemukan
-                    } else {
-                        $image = $image_404; // Gunakan default image
-                    }
-
+                    $image = "$d->id";
+                    $image =  App\Helpers\Fungsi::image($image);
 
                 @endphp
                 <div class="col-3 p-2">
                     <a class="card btn bgs_palettes h-100" href="{{ route('house.detail', ['id' => $d->id]) }}">
-                        <img src="{{ Storage::url($image) }}" class="card-img-top " alt="...">
+                        <img src="{{ Storage::url($image) }}" class="card-img-bottom " alt="Image not load">
                         <div class="card-img-overlay text-start">
                             <h5 class="card-title text-center">
                                 {{ $d->name }}
@@ -50,7 +32,24 @@
                     </a>
                 </div>
             @endforeach
+
+
         </div>
+        {{-- <div class="col-12">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+        </div> --}}
     </div>
 
     <script>

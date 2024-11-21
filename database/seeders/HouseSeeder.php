@@ -47,13 +47,13 @@ class HouseSeeder extends Seeder
                 for ($k = 0; $k < 2; $k++) {
                     FacilityRoom::create([
                         'room_id' => $room->id,
-                        'facility_id' => $faker->numberBetween(1, 4),
+                        'facility_id' => $faker->numberBetween(5, 7),
                     ]);
                 }
             }
 
             // Buat 2 fasilitas untuk setiap BoardingHouse
-            $randomID = $faker->numberBetween(5, 7);
+            $randomID = $faker->numberBetween(1, 4);
             for ($k = 0; $k < $faker->numberBetween(1, 2); $k++) {
                 FacilityHouse::create([
                     'house_id' => $boardingHouse->id,
@@ -61,7 +61,7 @@ class HouseSeeder extends Seeder
                     'description' => $faker->sentence(5),
                 ]);
                 $randomID++;
-                if ($randomID > 7) $randomID = 5;
+                if ($randomID > 5) $randomID = 1;
             }
         }
     }

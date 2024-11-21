@@ -22,7 +22,7 @@ class HouseController extends Controller
 
     public function detail($id)
     {
-        $datas = House::with(['rooms.facilities', 'facilities.facility'])->where('id', $id)->get();
+        $datas = House::with(['rooms.facilities', 'facilities.facility'])->where('id', $id)->first();
         return view('admin.house.detail', compact(['datas']));
     }
 
